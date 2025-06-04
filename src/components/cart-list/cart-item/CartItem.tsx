@@ -9,7 +9,7 @@ interface CartItemProps {
 }
 const CartItem = ({item, changeItem} : CartItemProps) => {
     const deleteItem1 = () => {
-        let cartItems : ItemCart[] = JSON.parse(sessionStorage.getItem('cartItems')) || [];
+        let cartItems : ItemCart[] = JSON.parse(sessionStorage.getItem('cartItems') || '[]');
 
         cartItems = cartItems.filter(i => i.id !== item.id);
 
@@ -17,7 +17,7 @@ const CartItem = ({item, changeItem} : CartItemProps) => {
         changeItem(cartItems);
     }
     const addItem = () => {
-        const cartItems : ItemCart[] = JSON.parse(sessionStorage.getItem('cartItems')) || [];
+        const cartItems : ItemCart[] = JSON.parse(sessionStorage.getItem('cartItems') || '[]');
         const existingItemIndex = cartItems.findIndex(cartItem => cartItem.id === item.id);
         if (existingItemIndex !== -1) {
             cartItems[existingItemIndex].quantity += 1;
@@ -26,7 +26,7 @@ const CartItem = ({item, changeItem} : CartItemProps) => {
         changeItem(cartItems);
     }
     const minusItem = () => {
-        const cartItems : ItemCart[] = JSON.parse(sessionStorage.getItem('cartItems')) || [];
+        const cartItems : ItemCart[] = JSON.parse(sessionStorage.getItem('cartItems') || '[]');
         const existingItemIndex = cartItems.findIndex(cartItem => cartItem.id === item.id);
         if (existingItemIndex !== -1) {
             cartItems[existingItemIndex].quantity -= 1;
