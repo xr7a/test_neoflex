@@ -8,7 +8,7 @@ interface ItemCardProps {
 }
 const ItemCard = ({item} : ItemCardProps) => {
     const getInCart = () => {
-        let cartItems : ItemCart[]= JSON.parse(sessionStorage.getItem('cartItems')) || [];
+        const cartItems : ItemCart[]= JSON.parse(sessionStorage.getItem('cartItems') || '[]');
 
         const existingItemIndex = cartItems.findIndex(cartItem => cartItem.id === item.id);
 
